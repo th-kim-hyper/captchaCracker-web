@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #drop_zone {
+            border: 5px solid blue;
+            width: 600px;
+            height: 10rem;
+        }
+
+        .captchaText {
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .cCard {
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 1rem;
+            width: fit-content;
+            padding: 1rem;
+        }
+
+        ul {
+            list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-star-fill' viewBox='0 0 16 16'%3E%3Cpath d='M8 0l2.48 5.5L16 6.2l-4 4.1.9 6.3-5-3.1-5 3.1.9-6.3-4-4.1 5.52-1.7L8 0z'/%3E%3C/svg%3E");
+            padding: 0;
+            margin: 0;
+        }
+
+        /* li::before {
+            content: "✨";
+        } */
+
+        /* .single-before, #imgList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                padding-left: 1rem;
+                text-indent: -0.7rem;
+            }
+
+            li::before {
+                content: "✨";
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>하이퍼정보 Captcha solver</h2>
+        <form id="frm" action="" method="post" enctype="multipart/form-data" onsubmit="submitHandler(event)">
+            <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+                <p>업로드할 파일을 끌어다 놓으세요 <i>drop zone</i>.</p>
+            </div>
+            <br />
+            <label for="modelType">모델 선택</label>
+            <select name="modelType" id="modelType">
+                <option value="supreme_court">대법원</option>
+                <option value="gov24">정부24</option>
+            </select>
+            <input type="file" id="captchaFile" accept=".png,.jpg,.jpeg,.bmp,.gif" name="captchaFile"
+                placeholder="Captcha">
+            <button type="submit">확인</button>
+        </form>
+        <ul id="imgList"></ul>
+    </div>
+    <template id="imgCard">
+        <li>
+            <div class="cCard">
+                <div>
+                    <span class="captchaText"></span>
+                    <hr>
+                    <img class="img">
+                    <hr>
+                    <lable>처리시간(초) : </lable><span class="procTime"></span>
+                </div>
+            </div>
+        </li>
+    </template>
+</body>
+<script>
+
+    function fileChangeHandler(ev) {
+        const file = ev.target.files[0];
+        const formData = new FormData();
+    }
+
+    function predict(files) {
+
+        const drop_zone = document.getElementById("drop_zone");
+        const frm = document.getElementById("frm");
+        const body = document.body;
+
+        frm.childNodes.forEach((node) => {
+            if (node.nodeName.includes("input", "select", "button")) {
+                node.disabled = true;
+            }
+        });
+
+        const formData = new FormData();
+        // const file = document.getElementById("captchaFile").files[0];
+        const modelType = document.getElementById("modelType").value;
+        formData.append("captchaFile", files[0]);
+        formData.append("modelType", modelType);
+        fetch("/api/predict", {
+            method: "POST",
+            body: formData
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                predHandler(data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            })
+            .finally(() => {
+                frm.childNodes.forEach((node) => {
+                    if (node.nodeName.includes("input", "select", "button")) {
+                        node.disabled = false;
+                    }
+                });
+            });
+    }
+
+    function submitHandler(ev) {
+        ev.preventDefault();
+        const files = document.getElementById("captchaFile").files;
+
+        if (files) {
+            predict(files);
+        }
+    }
+
+    function dropHandler(ev) {
+        console.log("File(s) dropped");
+        ev.preventDefault();
+        const files = ev.dataTransfer.files;
+
+        if (files) {
+            predict(files);
+        }
+    }
+
+    function dragOverHandler(ev) {
+        console.log("File(s) in drop zone");
+        ev.preventDefault();
+    }
+
+    function predHandler(result) {
+        const imgList = document.getElementById("imgList");
+        const imgCard = document.getElementById("imgCard");
+        const clone = imgCard.content.cloneNode(true);
+        const captchaText = clone.querySelector(".captchaText");
+        const img = clone.querySelector(".img");
+        const procTime = clone.querySelector(".procTime");
+        const model_type = result["model_type"];
+        const file_name = result["file_name"];
+        const pred = result["pred"];
+        const p_time = result["p_time"];
+
+        clone.id = file_name
+        captchaText.textContent = pred;
+        img.src = "/images?t=" + model_type + "&f=" + file_name;
+        procTime.textContent = p_time.toFixed(3);
+        imgList.prepend(clone);
+    }
+
+</script>
+
+</html>

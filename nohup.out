@@ -1,0 +1,104 @@
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.50.98:5000
+[33mPress CTRL+C to quit[0m
+192.168.20.52 - - [26/Jul/2024 15:13:12] "POST / HTTP/1.0" 200 -
+192.168.20.52 - - [26/Jul/2024 15:13:13] "GET /images?f=s.png HTTP/1.0" 200 -
+192.168.20.52 - - [26/Jul/2024 15:26:17] "GET / HTTP/1.0" 200 -
+[2024-07-26 15:26:17,166] ERROR in app: Exception on /images [GET]
+Traceback (most recent call last):
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "app.py", line 38, in images
+    return send_file(filepath, mimetype='image/png')
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/helpers.py", line 499, in send_file
+    return werkzeug.utils.send_file(  # type: ignore[return-value]
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/werkzeug/utils.py", line 480, in send_file
+    file = open(path, "rb")  # type: ignore
+IsADirectoryError: [Errno 21] Is a directory: '/home/hyper/projects/captchaCracker-web/upload/'
+192.168.20.52 - - [26/Jul/2024 15:26:17] "[35m[1mGET /images?f= HTTP/1.0[0m" 500 -
+192.168.20.52 - - [27/Jul/2024 07:56:54] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [27/Jul/2024 07:56:57] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [27/Jul/2024 07:56:58] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [27/Jul/2024 11:42:19] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [27/Jul/2024 11:42:23] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [27/Jul/2024 11:42:24] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [28/Jul/2024 01:09:52] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [28/Jul/2024 01:09:55] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [28/Jul/2024 01:09:56] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [29/Jul/2024 05:01:58] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [29/Jul/2024 05:02:02] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [29/Jul/2024 05:02:03] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [29/Jul/2024 05:22:05] "GET / HTTP/1.0" 200 -
+192.168.20.52 - - [29/Jul/2024 05:22:05] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [29/Jul/2024 08:05:34] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [29/Jul/2024 08:05:46] "GET / HTTP/1.0" 200 -
+[2024-07-29 08:05:46,191] ERROR in app: Exception on /images [GET]
+Traceback (most recent call last):
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "app.py", line 38, in images
+    return send_file(filepath, mimetype='image/png')
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/helpers.py", line 499, in send_file
+    return werkzeug.utils.send_file(  # type: ignore[return-value]
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/werkzeug/utils.py", line 480, in send_file
+    file = open(path, "rb")  # type: ignore
+IsADirectoryError: [Errno 21] Is a directory: '/home/hyper/projects/captchaCracker-web/upload/'
+192.168.20.52 - - [29/Jul/2024 08:05:46] "[35m[1mGET /images?f= HTTP/1.0[0m" 500 -
+192.168.20.52 - - [29/Jul/2024 08:05:46] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.20.52 - - [29/Jul/2024 08:05:52] "[33mGET /favicon.ico HTTP/1.0[0m" 404 -
+192.168.50.66 - - [29/Jul/2024 10:22:10] "GET / HTTP/1.1" 200 -
+[2024-07-29 10:22:10,311] ERROR in app: Exception on /images [GET]
+Traceback (most recent call last):
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "app.py", line 38, in images
+    return send_file(filepath, mimetype='image/png')
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/helpers.py", line 499, in send_file
+    return werkzeug.utils.send_file(  # type: ignore[return-value]
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/werkzeug/utils.py", line 480, in send_file
+    file = open(path, "rb")  # type: ignore
+IsADirectoryError: [Errno 21] Is a directory: '/home/hyper/projects/captchaCracker-web/upload/'
+192.168.50.66 - - [29/Jul/2024 10:22:10] "[35m[1mGET /images?f= HTTP/1.1[0m" 500 -
+192.168.50.66 - - [29/Jul/2024 10:22:11] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2024-07-29 10:22:29,156] ERROR in app: Exception on / [POST]
+Traceback (most recent call last):
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "app.py", line 28, in index
+    pred = hyper.predict(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+  File "/home/hyper/projects/captchaCracker-web/hyper.py", line 242, in predict
+    prediction_model = self.load_prediction_model()
+  File "/home/hyper/projects/captchaCracker-web/hyper.py", line 224, in load_prediction_model
+    model.load_weights(self.weights_path)
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/keras/utils/traceback_utils.py", line 67, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/hyper/projects/captchaCracker-web/.venv/lib/python3.8/site-packages/keras/backend.py", line 3930, in batch_set_value
+    x.assign(np.asarray(value, dtype=dtype_numpy(x)))
+ValueError: Cannot assign value to variable ' dense1/kernel:0': Shape mismatch.The variable shape (640, 64), and the assigned value shape (576, 64) are incompatible.
+192.168.50.66 - - [29/Jul/2024 10:22:29] "[35m[1mPOST / HTTP/1.1[0m" 500 -

@@ -225,8 +225,8 @@ class Hyper:
         else:
             model = keras.models.load_model(self.weights_path)
 
-        sum = model.summary()
-        print(sum)
+        # sum = model.summary()
+        # print(sum)
 
         prediction_model = keras.models.Model(
             model.get_layer(name="image").input, model.get_layer(name="dense2").output
